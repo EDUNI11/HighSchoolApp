@@ -7,6 +7,8 @@
     <string name="volver">VOLVER</string>
     <string name="show_age">EDAD</string>
     <string name="show_name">NOMBRE</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
     <string-array name="courses">
         <item>SMX 1</item>
         <item>SMX 2</item>
