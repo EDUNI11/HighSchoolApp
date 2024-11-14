@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">HighSchoolApp</string>
+    <string name="edad">EDAD</string>
+    <string name="add_alumno">AÑADIR ALUMNO</string>
+    <string name="listar_alumnos">LISTAR ALUMNOS</string>
+    <string name="nombre">NOMBRE</string>
+    <string name="volver">VOLVER</string>
+    <string name="show_age">EDAD</string>
+    <string name="show_name">NOMBRE</string>
+    <string-array name="courses">
+        <item>SMX 1</item>
+        <item>SMX 2</item>
+        <item>DAM 1</item>
+        <item>DAM 2</item>
+    </string-array>
+</resources>
