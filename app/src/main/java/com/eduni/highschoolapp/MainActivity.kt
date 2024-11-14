@@ -32,37 +32,43 @@ class MainActivity : AppCompatActivity() {
         )
 
         binding.addStudentButton.setOnClickListener {
-            val name = "Nombre: " + binding.nameTextInput.editText?.text.toString()
-            val age = "Edad: " + binding.ageTextInput.editText?.text.toString()
-            val courseString = binding.courseSelectionSpinner.selectedItem.toString()
+            val nameInput = binding.nameTextInput.editText?.text.toString().trim()
+            val ageText = binding.ageTextInput.editText?.text.toString().trim()
 
-            var course = Course.SMX1
-
-            when (courseString) {
-                Course.SMX2.displayName -> {
-                    course = Course.SMX2
-                }
-                Course.DAM1.displayName -> {
-                    course = Course.DAM1
-                }
-                Course.DAM2.displayName -> {
-                    course = Course.DAM2
-                }
-            }
-
-            if (binding.nameTextInput.editText?.text.toString().isEmpty()) {
+            if (nameInput.isEmpty()) {
                 Toast.makeText(this, "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show()
-            }
-            if (binding.ageTextInput.editText?.text.toString().isEmpty()) {
-                Toast.makeText(this, "La edad no puede estar vacía", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
-            if (binding.nameTextInput.editText?.text != null && binding.ageTextInput.editText?.text != null) {
-                DataSource.addStudent(name, age, course.displayName)
-                Toast.makeText(this, "Alumno añadido correctamente", Toast.LENGTH_SHORT).show()
-                binding.nameTextInput.editText?.text = null
-                binding.ageTextInput.editText?.text = null
+            val age = ageText.toIntOrNull()
+            if (age == null || age <= 0) {
+                Toast.makeText(
+                    this,
+                    "La edad debe ser un número válido y mayor a cero",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
             }
+
+            val name = "Nombre: " + nameInput.toLowerCase().capitalize()
+            val ageShow = "Edad: $age años"
+            val courseString = binding.courseSelectionSpinner.selectedItem.toString()
+            val course = when (courseString) {
+                Course.SMX2.displayName -> Course.SMX2
+                Course.DAM1.displayName -> Course.DAM1
+                Course.DAM2.displayName -> Course.DAM2
+                else -> Course.SMX1
+            }
+
+            DataSource.addStudent(name, ageShow, course.displayName)
+
+            binding.nameTextInput.editText?.text = null
+            binding.ageTextInput.editText?.text = null
+
+            binding.nameTextInput.editText?.clearFocus()
+            binding.ageTextInput.editText?.clearFocus()
+
+            Toast.makeText(this, "Alumno añadido correctamente", Toast.LENGTH_SHORT).show()
         }
 
         binding.listStudentsButton.setOnClickListener {
