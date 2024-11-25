@@ -11,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.eduni.highschoolapp.databinding.ActivityShowStudentsBinding
 import android.content.Intent
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
